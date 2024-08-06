@@ -6,16 +6,17 @@ import { RoleGuard } from './guard/role.guard';
 
 @Module({
 
-  controllers: [
-    UserController
-  ],
+  controllers: [UserController],
 
   providers: [
+
     UserService,
+
     {
       provide: APP_GUARD,
       useClass: RoleGuard
     }
+
   ]
 
 })

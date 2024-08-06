@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, SetMetadata, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -14,7 +14,9 @@ export class UserController {
   @RequirePermissions(Permission.CREATE_USER)
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+
+    return this.userService.create(createUserDto)
+
   }
 
   @Get()
@@ -40,7 +42,18 @@ export class UserController {
   }
 
 }
-function RequirePermissions(): (target: UserController, propertyKey: "create", descriptor: TypedPropertyDescriptor<(createUserDto: CreateUserDto) => string>) => void | TypedPropertyDescriptor<(createUserDto: CreateUserDto) => string> {
-  throw new Error('Function not implemented.');
+
+function RequirePermissions(): (
+
+  target: UserController,
+
+  propertyKey: "create",
+
+  descriptor: TypedPropertyDescriptor<(createUserDto: CreateUserDto) => string>)
+
+  => void | TypedPropertyDescriptor<(createUserDto: CreateUserDto) => string> {
+
+  throw new Error('Function not implemented.')
+
 }
 
